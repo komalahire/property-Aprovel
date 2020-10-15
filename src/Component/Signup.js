@@ -14,8 +14,14 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     marginTop: "130px",
+   
   },
+card:{
+  boxShadow: "0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)",
+  borderRadius:'5%'
+},
 
+  
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
@@ -46,7 +52,7 @@ export default function SignIn(props) {
       .post("http://localhost:4000/newuser", useDeatil)
       .then((res) => {
         console.log(res, "respones");
-        props.history.push('/searchptin')
+        props.history.push('/login')
       })
       .catch((err) => {
         console.log(err, "errorr");
@@ -54,10 +60,10 @@ export default function SignIn(props) {
   };
   console.log(useDeatil, "state");
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className={classes.card}>
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h3">
           Sign in
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
@@ -90,9 +96,10 @@ export default function SignIn(props) {
             margin="normal"
             required
             fullWidth
+            pattern="^\d{4}-\d{3}-\d{4}$" required 
             name="userPhone"
             label="Phone Number"
-            type="number"
+            type="phone"
             autoComplete="phoneNumber"
             onChange={handleChange}
             defaultValue={useDeatil.userPhone}
