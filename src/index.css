@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.MuiTableCell-head{
+  font-weight: bold !important;
+  font-size: 18px !important;
+}
+.MuiTableCell-root{
+  font-size: 18px !important;
+}

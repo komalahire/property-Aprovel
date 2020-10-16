@@ -58,7 +58,7 @@ export default function SignIn(props) {
         console.log(err, "errorr");
       });
   };
-  console.log(useDeatil, "state");
+ 
   return (
     <Container component="main" maxWidth="xs" className={classes.card}>
       <CssBaseline />
