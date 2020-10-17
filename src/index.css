@@ -11,10 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.MuiTableCell-head{
-  font-weight: bold !important;
-  font-size: 18px !important;
+
+
+.makeStyles-root-18 {
+margin-top: 5% ;
 }
-.MuiTableCell-root{
-  font-size: 18px !important;
+
+.MuiGrid-spacing-xs-3{
+  padding: 30px ; 
+}
+
+.MuiAlert-filledSuccess {
+  margin-bottom: 71px;
+}
+
+.MuiButton-text{
+  color: white !important;
+  text-decoration: none !important;
+  font-weight: bold;
+
 }

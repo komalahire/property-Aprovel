@@ -3,8 +3,10 @@ import TextField from "@material-ui/core/TextField";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid } from "@material-ui/core";
-import Header from "./Header";
-import CitizenDetail from './citizenDetail'
+import Header from "./RolePage/Header";
+import CitizenDetail from './RolePage/citizenDetail';
+import EditCitizenDetails from './RolePage/EditCitizenDetail'
+
 import axios from'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,9 +26,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Search(props) {
-
+console.log(props.history.location.pathname,"komal")
 const [searchPtin, SetSearchPtin]= useState('')
 const [userData , SetUserData] = useState([])
+const [showData,SetShowData]= useState(false)
 
 const handleChange = (event) => {
   SetSearchPtin(event.target.value );
@@ -39,8 +42,9 @@ e.preventDefault();
 console.log(searchPtin, "STATE")
 axios.get(`http://localhost:4000/getthedata/${searchPtin}`)
 .then(res=>{
-  SetUserData(res.data)
-  // console.log(res.data, "dataaaaaaaaa")
+  SetUserData(res.data[0])
+  // console.log(res.data[0], "dataaaaaaaaa")
+  SetShowData(true)
 })
 .catch(err=>{
   console.log(err, "errrrrrrrrrrrrrrrrrrr")
@@ -48,6 +52,7 @@ axios.get(`http://localhost:4000/getthedata/${searchPtin}`)
 }
 
   const classes = useStyles();
+  console.log(window.location.pathname,"Location")
   return (
     <React.Fragment>
       <Header />
@@ -67,7 +72,9 @@ axios.get(`http://localhost:4000/getthedata/${searchPtin}`)
          </form>
         </div>
       </Container>
-    <CitizenDetail userData={userData }/>
+
+  {showData ? <CitizenDetail userData={userData }/>:null} 
+
 
     </React.Fragment>
   );

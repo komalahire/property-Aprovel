@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from 'axios';
+import {Link} from "react-router-dom"
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -50,7 +51,13 @@ export default function Login(props) {
       .post("http://localhost:4000/login", userLogin)
       .then((res) => {
         console.log(res, "respones");
-        props.history.push('/searchptin')
+        // if(res.data === "admin"){
+        //   props.history.push('/admin')
+        // }
+        // else{
+          props.history.push('/searchptin')
+        // }
+     
         // set token
         localStorage.setItem('token', res.data)
 
@@ -58,6 +65,8 @@ export default function Login(props) {
         if(res.data === "wrong userPhone number"){
           props.history.push('/login')
         }
+
+     
         
     
       })
@@ -109,7 +118,14 @@ export default function Login(props) {
           >
             Sign In
             </Button>
+            <Typography gutterBottom variant="p" component="p" style={{textAlign:'center'}}>
+            Already have Account  &nbsp;
+          <Link to="/">
+          Signup
+          </Link>
+      </Typography>
         </form>
+
       </div>
     </Container>
   )

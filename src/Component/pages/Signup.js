@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
-
+import {Link} from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -38,6 +38,7 @@ export default function SignIn(props) {
     userName: "",
     userEmail: "",
     userPhone: "",
+    citizen: "",
     otp: "",
   });
 
@@ -53,6 +54,10 @@ export default function SignIn(props) {
       .then((res) => {
         console.log(res, "respones");
         props.history.push('/login')
+
+        if(res.data.citizen == "no"){
+          props.history.push('/admin')
+        }
       })
       .catch((err) => {
         console.log(err, "errorr");
@@ -60,6 +65,7 @@ export default function SignIn(props) {
   };
  
   return (
+    
     <Container component="main" maxWidth="xs" className={classes.card}>
       <CssBaseline />
       <div className={classes.paper}>
@@ -105,6 +111,20 @@ export default function SignIn(props) {
             defaultValue={useDeatil.userPhone}
           />
 
+
+
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            label=" Are you citizen?"
+            name="citizen"
+            autoComplete="citizen"
+            autoFocus
+            defaultValue={useDeatil.citizen}
+            onChange={handleChange}
+          />
           <TextField
             variant="outlined"
             margin="normal"
@@ -128,6 +148,12 @@ export default function SignIn(props) {
           >
             Sign In
           </Button>
+          <Typography gutterBottom variant="p" component="p" style={{textAlign:'center'}}>
+            Already have Account &nbsp;
+          <Link to="/login">
+          login
+          </Link>
+      </Typography>
         </form>
       </div>
     </Container>

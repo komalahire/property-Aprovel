@@ -3,7 +3,7 @@ import Header from './Header'
 export default function superadmin() {
     return (
         <div>
-                <Header/>
+        <Header/>
             i am superadmin
         </div>
     )
